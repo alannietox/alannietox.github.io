@@ -1,0 +1,52 @@
+main
+{
+    background-color: rgb(37, 37, 37);
+    margin: 0px;
+    min-height: 75vh;
+}
+.sub-body
+{
+    padding-top: 5px;
+    width: 700px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+}
+h1
+{
+    text-align: center;
+    margin: 15px;
+}
+.fila>*>h2
+{
+    text-align: center;
+    margin: 10px;
+}
+.fila
+{
+    text-align: center;
+    display: flex;
+    width: 300px;
+    margin-bottom: 10px;
+}
+#eskaintza1
+{
+    margin-right: 48px;
+}
+#eskaintza3
+{
+    margin-right: 48px;
+}
+.fila>*>*>img
+{
+    border-radius: 10px;
+    height: 170px;
+    width: 325px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.fila>*>*>img:hover
+{
+    transition: 0.5s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}

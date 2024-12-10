@@ -1,0 +1,106 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+}
+body>*
+{
+    padding: 10px;
+    margin: 15px;
+}
+body>main>*
+{
+    padding: 15px;
+    margin: 15px; 
+    width: 700px;
+}
+header
+{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+header>div
+{
+    align-items: center;
+    display: flex;
+}
+form
+{
+    width: 40%;
+}
+.texto
+{
+    padding-left: 20px;
+    height: 35px;
+    width: 75%;
+    border-radius: 20px;
+    font-size:larger;
+}
+.busca
+{
+    height: 35px;
+    width: 50px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size:large;
+    background-color: white;
+    align-items: center;
+}
+.logo
+{
+    margin-block: auto;
+    height: 30px;
+    width: 55px;
+    border: 4px, solid;
+    border-radius: 100%;
+    padding-block: 10px;
+    margin-right: 20px;
+}
+.cesta
+{
+    height: 77.38px;
+    width: 125px;
+    margin-left: 0px;
+}
+nav
+{
+    margin: 0;
+    background-color: rgb(37, 37, 37);
+}
+nav>*
+{
+    text-align: center;
+}
+nav>*>*
+{
+    margin-inline: 10px;
+    display: inline-block;
+}
+nav>*>*>*
+{
+    text-decoration: none;
+    color: white;
+    border: 1px , solid, rgb(37, 37, 37);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(37, 37, 37);
+    transition: 0.5s;
+}
+nav>*>*>*:hover
+{
+    background-color: white;
+    color: rgb(37, 37, 37);
+    transition: 0.5s;
+}
+footer
+{
+    color: white;
+    background-color: rgb(37, 37, 37);
+    text-align: center;
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    width: 98.4%;
+}

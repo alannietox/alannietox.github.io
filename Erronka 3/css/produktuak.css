@@ -1,0 +1,93 @@
+
+main
+{
+    background-color: rgb(37, 37, 37);
+    margin: 0px;
+    min-height: 75vh;
+}
+.sub-body
+{
+    padding-top: 5px;
+    width: 700px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+}
+main section {
+    display: grid;
+    /*grid-template: repeat(2,auto) / repeat(2,fr);*/
+    grid-template: auto auto / 1fr 1fr 1fr;
+    row-gap: 15px;
+    column-gap: 15px;
+}
+h1
+{
+    text-align: center;
+    margin: 15px;
+}
+#eskaintza1{
+    grid-row: 1/2;
+    grid-column: 1/span 3;
+    border: 1px dotted black;
+}
+#eskaintza2{
+    grid-row: 1/2;
+    grid-column: 4/span 3;
+    border: 1px dotted black;
+}
+#eskaintza3{
+    grid-row: 1/2;
+    grid-column: 7/span 3;
+    border: 1px dotted black;
+}
+#eskaintza4{
+    grid-row: 1/2;
+    grid-column: 10/span 3;
+    border: 1px dotted black;
+}
+#eskaintza5{
+    grid-row: 2/3;
+    grid-column: 1/span 2;
+    border: 1px dotted black;
+}
+#eskaintza6{
+    grid-row: 2/3;
+    grid-column: 3/span 2;
+    border: 1px dotted black;
+}
+#eskaintza7{
+    grid-row: 2/3;
+    grid-column: 5/span 2;
+    border: 1px dotted black;
+}
+#eskaintza8{
+    grid-row: 2/3;
+    grid-column: 7/span 2;
+    border: 1px dotted black;
+}
+.sub-body>section>div{
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px, solid, gray;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.sub-body>section>div:hover{
+    transition: 0.5s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+.sub-body section div img{
+    width: 200px;
+    height: 185px;
+}
+.sub-body>section>div>* {
+        font-family: "Prompt", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+      
+}
+.prezioa
+{
+    color: red;
+}

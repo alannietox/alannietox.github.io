@@ -1,52 +1,60 @@
-main
-{
-    background-color: rgb(37, 37, 37);
-    margin: 0px;
-    min-height: 75vh;
-}
-.sub-body
-{
-    padding-top: 5px;
-    width: 700px;
-    margin: auto;
-    background-color: white;
-    border-radius: 20px;
-}
 h1
 {
     text-align: center;
     margin: 15px;
 }
-.fila>*>h2
+.eskaintza>*>h2
 {
     text-align: center;
     margin: 10px;
 }
-.fila
-{
+section {
+    
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    /* Cuatro columnas */
+    gap: 20px;
+    margin-top: 20px;
+}
+section{
     text-align: center;
-    display: flex;
-    width: 300px;
-    margin-bottom: 10px;
 }
-#eskaintza1
+
+.eskaintza>a>img
 {
-    margin-right: 48px;
-}
-#eskaintza3
-{
-    margin-right: 48px;
-}
-.fila>*>*>img
-{
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     height: 170px;
     width: 325px;
-    cursor: pointer;
-    transition: 0.5s;
 }
-.fila>*>*>img:hover
+.eskaintza
+{
+    width: 325px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.5s;
+    margin-left: 7.5px;
+}
+.eskaintza:hover
 {
     transition: 0.5s;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background-color: rgb(37, 37, 37);
+    color: white;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* Cuatro columnas */
+    gap: 20px;
+    margin-top: 20px;
+    }
+    .eskaintza
+    {
+        margin:auto;
+    }
 }

@@ -1,17 +1,3 @@
-main
-{
-    background-color: rgb(37, 37, 37);
-    margin: 0px;
-    min-height: 75vh;
-}
-.sub-body
-{
-    padding-top: 5px;
-    width: 700px;
-    margin: auto;
-    background-color: white;
-    border-radius: 20px;
-}
 h1
 {
     text-align: center;
@@ -66,7 +52,7 @@ label>img
 .hurrengoa
 {
     width: 80px;
-    margin-left: 87%;
+    margin-left: 80%;
 }
 .ezabatu
 {
@@ -79,5 +65,11 @@ label>img
     background-color: rgb(247, 126, 126);
     color: white;
     transition: 0.1s;
+
+}
+@media (max-width: 768px) {
+    .saskia>*>td {
+        padding: 1%;
+    }
 
 }

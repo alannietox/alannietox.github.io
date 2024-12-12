@@ -3,10 +3,34 @@
     padding: 0px;
     margin: 0px;
 }
+
+html,body
+{
+    height: 100%;
+}
+body
+{
+
+    display: flex;
+    flex-direction: column;
+}
 body>*
 {
     padding: 10px;
     margin: 15px;
+}
+main
+{
+    background-color: rgb(37, 37, 37);
+    margin: 0px;
+}
+.sub-body
+{
+    padding-top: 5px;
+    width: 700px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
 }
 body>main>*
 {
@@ -26,8 +50,9 @@ header>div
     align-items: center;
     display: flex;
 }
-form
+.buscador
 {
+    display: flex;
     width: 40%;
 }
 .texto
@@ -63,6 +88,12 @@ form
     height: 77.38px;
     width: 125px;
     margin-left: 0px;
+    transition: 0.5s;
+}
+.cesta:hover
+{
+    transform: scale(1.1);
+    transition: 0.5s;
 }
 nav
 {
@@ -78,6 +109,11 @@ nav>*>*
     margin-inline: 10px;
     display: inline-block;
 }
+.kanit-semibold {
+    font-family: "Kanit", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
 nav>*>*>*
 {
     text-decoration: none;
@@ -94,13 +130,34 @@ nav>*>*>*:hover
     color: rgb(37, 37, 37);
     transition: 0.5s;
 }
+main
+{
+    flex: 1;
+    background-color: rgb(37, 37, 37);
+    margin: 0px;
+}
+.sub-body
+{
+    padding-top: 5px;
+    width: 700px;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+}
 footer
 {
     color: white;
     background-color: rgb(37, 37, 37);
     text-align: center;
-    position: absolute;
+    position: relative;
     margin: 0;
-    bottom: 0;
-    width: 98.4%;
+}
+@media (max-width: 768px) {
+    .buscador {
+        display: none;
+    }
+    .sub-body{
+        width: 80%;
+    }
+
 }

@@ -71,5 +71,8 @@ label>img
     .saskia>*>td {
         padding: 1%;
     }
+    table{
+        width: 2%;
+    }
 
 }

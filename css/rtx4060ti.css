@@ -1,9 +1,12 @@
 .seccion
 {
     margin: 15px;
-    display: inline-block;
     width: 318px;
     
+}
+.first
+{
+    display: flex;
 }
 .img
 {
@@ -55,6 +58,10 @@
     padding: 10px;
     height: 170px;
 }
+.comprar>a
+{
+    text-decoration: none;
+}
 .jaso
 {
     color: green;
@@ -86,4 +93,22 @@ padding: 5px;
     border: 1px,solid, green;
     background-color: white;
     color: green;
+}
+@media (max-width: 768px) {
+    .seccion
+    {
+        margin-left: 0px;
+    }
+    .first
+    {
+        display: block;
+    }
+    .nom
+    {
+    height: 80px;
+    }
+    .seccion>ul{
+    margin-left: 10px    
+    }
+    
 }

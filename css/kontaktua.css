@@ -7,16 +7,7 @@ h1
     text-align: center;
     margin: 15px;
 }
-table
+.email>*
 {
-    
-    margin: auto;
-    margin-top: 20px;
-}
-td{
-    width: 100px;
-}
-td>img
-{
-    width: 50px;
+    margin-bottom: 10px;
 }

@@ -34,21 +34,25 @@
     <main>
         <div class="sub-body">
             <h1 class="kanit-semibold">Kontaktua</h1>
-            <div>
-                <table>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" id="fname" name="fname"></td>
-                    </tr>
-                    <tr>
-                        <td>Afera</td>
-                        <td><input type="text" id="fname" name="fname"></td>
-                    </tr>
-                    <tr>
-                        <td>Gorputza</td>
-                        <td><input type="text" id="fname" name="fname"></td>
-                    </tr>
-                  </table>
+            <div class="email">
+                <div>
+                    <form
+                    action="https://formspree.io/f/xovvyjby"
+                    method="POST">
+                    <label>
+                        Email:
+                        <input type="email" name="email">
+                    </label>
+                    </div>
+                <div>
+                    <label>
+                        Mesua:
+                        <textarea name="message"></textarea>
+                    </label>
+                    <!-- your other form fields go here -->
+                    <button type="submit">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>

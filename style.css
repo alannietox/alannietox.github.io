@@ -220,6 +220,9 @@ footer
   .nobedadeak>div{
     background-color: white;
   }
+  .nobedadeak>div:hover{
+    transform: scale(1.03);
+  }
   /* For mobile phones: */
   [class*="col-"] {
     width: 100%;

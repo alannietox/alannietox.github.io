@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alan Nieto | Desarrollador Web Backend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <style>
+        :root {
+            --bg-base: #050505;
+            --card-bg: rgba(20, 20, 25, 0.4);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-highlight: rgba(255, 255, 255, 0.2);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --text-dim: #71717a;
+            --accent-1: #ff2e93; /* Neon Pink */
+            --accent-2: #00f0ff; /* Neon Cyan */
+            --accent-3: #ffb800; /* Neon Yellow */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 4rem 1rem;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Aurora Background */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            z-index: -1;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        body::before {
+            top: -20%;
+            left: -20%;
+            background: radial-gradient(circle, var(--accent-1) 0%, transparent 60%);
+            animation-delay: -5s;
+        }
+        body::after {
+            bottom: -20%;
+            right: -20%;
+            background: radial-gradient(circle, var(--accent-2) 0%, transparent 60%);
+            animation-duration: 25s;
+        }
+        .container::before {
+            content: '';
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            width: 60vw;
+            height: 60vw;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-3) 0%, transparent 50%);
+            filter: blur(120px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulse-glow 15s infinite alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 15%) scale(1.2); }
+        }
+        @keyframes pulse-glow {
+            0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); }
+            100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 500px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            position: sticky;
+            top: 4rem;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .ambient { display: none; }
+
+        /* Glassmorphism Cards */
+        header, section {
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 3.5rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        header:hover, section:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--card-highlight);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+                header {
+            padding: 5rem 4rem;
+            min-height: calc(100vh - 8rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Stylish Header */
+        .name-row h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, var(--accent-2), var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+        }
+
+        .name-cursor { display: none; }
+
+        .subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .location {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            color: var(--accent-2);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-2);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-2);
+            animation: pulse-neon 1.5s infinite alternate;
+        }
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 5px var(--accent-2); opacity: 0.7; }
+            100% { box-shadow: 0 0 20px var(--accent-2), 0 0 40px var(--accent-2); opacity: 1; }
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sections Typography */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(255, 46, 147, 0.3);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+
+        .about-text strong {
+            color: #fff;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        /* Skills Bento Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .skill-icon { font-size: 2.5rem; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .skill-card:hover .skill-name { color: #fff; }
+
+        .skill-card.featured-py {
+            background: linear-gradient(145deg, rgba(55, 118, 171, 0.1), rgba(0,0,0,0.4));
+            border-color: rgba(55, 118, 171, 0.3);
+        }
+        .skill-card.featured-py:hover { border-color: #3776AB; box-shadow: 0 0 20px rgba(55, 118, 171, 0.4); }
+
+        .skill-card.featured-php {
+            background: linear-gradient(145deg, rgba(119, 123, 179, 0.1), rgba(0,0,0,0.4));
+            border-color: rgba(119, 123, 179, 0.3);
+        }
+        .skill-card.featured-php:hover { border-color: #777BB3; box-shadow: 0 0 20px rgba(119, 123, 179, 0.4); }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-1), var(--accent-2), transparent);
+            opacity: 0.5;
+        }
+
+        .exp-item {
+            position: relative;
+            padding-left: 4.5rem;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: 17px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 4px solid var(--accent-1);
+            box-shadow: 0 0 15px var(--accent-1);
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        .exp-item:hover::before { transform: scale(1.3); }
+
+        .exp-item:nth-child(2)::before { border-color: var(--accent-2); box-shadow: 0 0 15px var(--accent-2); }
+
+        .exp-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-meta {
+            color: var(--accent-2);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-date {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 1.25rem;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .exp-item ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .exp-item ul li {
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .exp-item ul li::before {
+            content: '→';
+            color: var(--accent-1);
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Education & Certifications */
+        .edu-item, .cert-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-item::after, .cert-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .edu-item:hover, .cert-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .edu-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .edu-place {
+            color: var(--accent-3);
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .edu-date {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 0.4rem;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cert-badge {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        .cert-info h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .cert-info span {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Powerful Button */
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 1.25rem 3.5rem;
+            border-radius: 100px;
+            box-shadow: 0 15px 30px rgba(255, 46, 147, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 46, 147, 0.6);
+            background: linear-gradient(135deg, var(--accent-3), var(--accent-1));
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .layout-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .sidebar { position: relative; top: 0; }
+        }
+        @media (max-width: 768px) {
+            header, section { padding: 2.5rem 2rem; border-radius: 24px; }
+            .name-row h1 { font-size: 3rem; }
+            .skills-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+            .cert-item { flex-direction: column; text-align: center; gap: 1rem; }
+        }
+    </style>
+    <body>
+
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+
+    <div class="container layout-grid">
+        <aside class="sidebar">
+            <header>
+            <div class="header-top">
+                <div class="header-left">
+                    <div class="name-row">
+                        <h1>Alan Nieto</h1>
+                        <span class="name-cursor"></span>
+                    </div>
+                    <p class="subtitle">Desarrollador Web Backend</p>
+                    <p class="location">Munitibar, Bizkaia</p>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        Disponible &amp; trabajando en Coonic
+                    </div>
+                </div>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:alannieto248@gmail.com">✉ alannieto248@gmail.com</a>
+                <a href="tel:+34636781082">📞 636 78 10 82</a>
+                <a href="https://www.linkedin.com/in/alan-nieto-8193b2370" target="_blank">🔗 LinkedIn</a>
+            </div>
+        </header>
+</aside>
+        <main class="content">
+<section>
+            <div class="section-header">
+                <div class="section-icon">👤</div>
+                <h2>Sobre mí</h2>
+            </div>
+            <p class="about-text">
+                Desarrollador web con sólida formación en <strong>desarrollo de aplicaciones</strong> y <strong>administración de redes y sistemas</strong>. 
+                Apasionado por construir herramientas que funcionen de verdad: desde desarrollo del lado del servidor hasta automatizaciones con <strong>Python</strong>. 
+                En continuo aprendizaje sobre <strong>Inteligencia Artificial</strong> y cómo integrarla en proyectos reales.
+            </p>
+        </section>
+
+            <section>
+                <div class="section-header">
+                    <div class="section-icon">🛠</div>
+                    <h2>Habilidades Técnicas</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card featured-py">
+                    <span class="skill-icon">🐍</span>
+                    <span class="skill-name">Python</span>
+                </div>
+                <div class="skill-card featured-php">
+                    <span class="skill-icon">🐘</span>
+                    <span class="skill-name">PHP</span>
+                </div>
+                
+                <div class="skill-card">
+                    <span class="skill-icon">🔌</span>
+                    <span class="skill-name">Bases de Datos</span>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🔧</span>
+                    <span class="skill-name">Admin. Sistemas</span>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🤖</span>
+                    <span class="skill-name">IA</span>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">⚡</span>
+                    <span class="skill-name">JavaScript</span>
+                </div>
+            </div>
+        </section>
+
+        
+        <section>
+            <div class="section-header">
+                <div class="section-icon">💼</div>
+                <h2>Experiencia</h2>
+            </div>
+            <div class="timeline">
+
+                <div class="exp-item">
+                    <div class="exp-title">Desarrollador Web</div>
+                    <div class="exp-meta">Coonic · Bilbao</div>
+                    <div class="exp-date">Marzo 2026 — Junio 2026</div>
+                    <ul>
+                        <li>Desarrollo y mantenimiento de aplicaciones web en producción.</li>
+                        <li>Programación de aplicaciones en Python para la automatización de tareas repetitivas, mediante la implementacion de IA.</li>
+                        <li>Desarrollo de aplicaciones web con PHP, para la recoleccion y el procesamiento de grandes cantidades de datos.</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title">Técnico Informático</div>
+                    <div class="exp-meta">Etor Larrinaga · Gernika-Lumo</div>
+                    <div class="exp-date">Marzo 2024 — Junio 2024</div>
+                    <ul>
+                        <li>Soporte técnico, mantenimiento de equipos, montaje de equipos y resolución de incidencias.</li>
+                        <li>Gestión de infraestructura de red y sistemas internos.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <h2>Educación</h2>
+            </div>
+            <div class="edu-item">
+                <div class="edu-title">CFGS · Desarrollo de Aplicaciones Web</div>
+                <div class="edu-place">Lea Artibai Ikastetxea</div>
+                <div class="edu-date">Sep 2024 — Jun 2026</div>
+            </div>
+            <div class="edu-item">
+                <div class="edu-title">CFGM · Administración de Redes y Sistemas</div>
+                <div class="edu-place">CIFP Zornotza</div>
+                <div class="edu-date">Sep 2022 — Jun 2024</div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <div class="section-icon">🏅</div>
+                <h2>Certificaciones</h2>
+            </div>
+            <div class="cert-item">
+                <div class="cert-badge">✦</div>
+                <div class="cert-info">
+                    <h3>Domina la IA con Gemini</h3>
+                    <span>Mar 2026</span>
+                </div>
+            </div>
+        </section>
+
+            <div class="btn-wrapper">
+                <a href="tu-curriculum-alan-nieto.pdf" class="btn-download" download>
+                    ↓ Descargar CV en PDF
+                </a>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

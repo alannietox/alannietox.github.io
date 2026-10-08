@@ -52,8 +52,8 @@
         .timeline{display:grid;gap:14px}.job{padding:22px;border-left:2px solid var(--border);background:var(--card);border-radius:0 12px 12px 0}.job:hover{border-left-color:var(--accent)}
         .job-top{display:flex;justify-content:space-between;gap:20px;margin-bottom:12px}.job h3{font-size:1.02rem}.job .company{color:var(--accent);font-size:.9rem}.date{color:var(--dim);font:500 .72rem 'JetBrains Mono';white-space:nowrap}
         .job ul{list-style:none;display:grid;gap:6px}.job li{color:var(--muted);font-size:.88rem;padding-left:18px;position:relative}.job li:before{content:'→';position:absolute;left:0;color:var(--dim)}
-        .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.project{display:flex;flex-direction:column;min-height:210px;padding:23px;background:var(--card);border:1px solid var(--border);border-radius:14px;text-decoration:none}.project:hover{border-color:#40505e;transform:translateY(-2px)}
-        .project .type{font:500 .68rem 'JetBrains Mono';color:var(--accent);text-transform:uppercase;letter-spacing:.08em}.project h3{font-size:1.25rem;margin:9px 0 8px}.project p{color:var(--muted);font-size:.88rem}.project .stack{margin-top:auto;padding-top:20px;color:var(--dim);font:500 .72rem 'JetBrains Mono'}
+        .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.project{display:flex;flex-direction:column;min-height:390px;padding:0;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:16px;text-decoration:none;transition:.2s}.project:hover{border-color:#40505e;transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,0,.2)}.project-body{padding:22px;display:flex;flex-direction:column;flex:1}.project .type{font:500 .68rem 'JetBrains Mono';color:var(--accent);text-transform:uppercase;letter-spacing:.08em}.project h3{font-size:1.35rem;margin:9px 0 8px}.project p{color:var(--muted);font-size:.88rem}.project .stack{margin-top:auto;padding-top:18px;color:var(--dim);font:500 .72rem 'JetBrains Mono'}.project-link{margin-top:14px;font:600 .75rem 'JetBrains Mono';color:var(--text)}
+        .preview{height:170px;padding:14px;background:#0b0f13;border-bottom:1px solid var(--border);font:500 .68rem 'JetBrains Mono';overflow:hidden}.windowbar{display:flex;gap:5px;margin-bottom:12px}.dot{width:7px;height:7px;border-radius:50%;background:#3a424b}.preview-grid{display:grid;grid-template-columns:72px 1fr;gap:10px;height:125px}.preview-side{border:1px solid #202831;border-radius:6px;padding:8px;color:#687582}.preview-main{border:1px solid #202831;border-radius:6px;padding:10px}.mini-title{color:#dce4ea;margin-bottom:8px}.mini-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.mini-card{border:1px solid #252e37;border-radius:5px;padding:8px;color:#8fa0ae}.mini-value{display:block;font-size:1rem;color:#dce4ea;margin-top:3px}.mini-chart{height:38px;margin-top:9px;border-bottom:1px solid #33404b;background:linear-gradient(170deg,transparent 45%,#263b4b 46%,#263b4b 48%,transparent 49%)}.news-preview{background:linear-gradient(135deg,#101821,#0b0f13)}.news-flow{display:grid;grid-template-columns:1fr 18px 1fr 18px 1fr;align-items:center;gap:5px;height:105px}.flow-box{border:1px solid #293541;border-radius:6px;padding:9px;color:#9daab5;text-align:center}.flow-arrow{color:#5d7182;text-align:center}.flow-box strong{display:block;color:#e1e7eb;font-size:.68rem;margin-bottom:4px}.flow-box span{font-size:.58rem;color:#6f7d89}
         .edu{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.edu article{padding:20px;background:var(--card);border:1px solid var(--border);border-radius:13px}.edu h3{font-size:.95rem}.edu p{color:var(--muted);font-size:.82rem;margin-top:5px}.edu time{display:block;color:var(--dim);font:500 .68rem 'JetBrains Mono';margin-top:12px}
         .cta{margin:45px 0 30px;text-align:center;padding:40px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#121b24,#101317)}.cta h2{font-size:1.8rem;margin-bottom:8px}.cta p{color:var(--muted);margin-bottom:20px}
         footer{padding:30px 0 45px;color:var(--dim);font:500 .72rem 'JetBrains Mono';display:flex;justify-content:space-between;gap:15px}
@@ -110,7 +110,7 @@
     </section>
 
     <section>
-        <div class="section-head"><h2>Stack</h2><p>// herramientas</p></div>
+        <div class="section-head"><h2>Stack</h2><p>// herramientas que uso</p></div>
         <div class="card skills">
             <span class="tag main">Python</span><span class="tag main">IA</span><span class="tag main">Machine Learning</span><span class="tag main">PHP</span>
             <span class="tag">SQL</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">Laravel</span><span class="tag">APIs</span><span class="tag">MySQL</span><span class="tag">Git</span><span class="tag">WordPress</span>
@@ -140,22 +140,24 @@
     </section>
 
     <section id="proyectos">
-        <div class="section-head"><h2>Proyectos destacados</h2><p>// código real</p></div>
+        <div class="section-head"><h2>Proyectos destacados</h2><p>// proyectos + muestras visuales</p></div>
         <div class="projects">
             <a class="project" href="https://github.com/alannietox/ClimaTrack" target="_blank" rel="noopener">
-                <span class="type">PHP · Datos · Automatización</span><h3>ClimaTrack ↗</h3>
-                <p>Plataforma para capturar, normalizar y exportar información meteorológica de múltiples fuentes para flujos editoriales.</p>
-                <div class="stack">PHP · MySQL/MariaDB · APIs · XML · cURL</div>
+                <div class="preview">
+                    <div class="windowbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                    <div class="preview-grid"><div class="preview-side">ClimaTrack<br><br>Fuentes<br>Datos<br>Exportar</div><div class="preview-main"><div class="mini-title">Panel meteorológico</div><div class="mini-row"><div class="mini-card">Temp.<span class="mini-value">18°</span></div><div class="mini-card">Viento<span class="mini-value">12 km/h</span></div><div class="mini-card">Lluvia<span class="mini-value">42%</span></div></div><div class="mini-chart"></div></div></div>
+                </div>
+                <div class="project-body"><span class="type">PHP · Datos · Automatización</span><h3>ClimaTrack ↗</h3><p>Pipeline meteorológico que integra fuentes externas, normaliza datos y genera salidas XML para flujos editoriales.</p><div class="stack">PHP · MySQL/MariaDB · APIs · XML · cURL</div><span class="project-link">Ver código y arquitectura →</span></div>
             </a>
             <a class="project" href="https://github.com/alannietox/NoticiasINE" target="_blank" rel="noopener">
-                <span class="type">Python · IA · Automatización</span><h3>NoticiasINE ↗</h3>
-                <p>Aplicación que recopila noticias, aplica filtros deterministas y utiliza IA para seleccionar contenido relevante y generar boletines.</p>
-                <div class="stack">Python · IA · FTP · CustomTkinter · PDF/RTF</div>
+                <div class="preview news-preview">
+                    <div class="windowbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                    <div class="news-flow"><div class="flow-box"><strong>FUENTES</strong>FTP<br>Noticias</div><div class="flow-arrow">→</div><div class="flow-box"><strong>IA</strong>Filtrar<br>Clasificar</div><div class="flow-arrow">→</div><div class="flow-box"><strong>SALIDA</strong>PDF<br>RTF</div></div>
+                </div>
+                <div class="project-body"><span class="type">Python · IA · Automatización</span><h3>NoticiasINE ↗</h3><p>Automatiza la recopilación, filtrado y clasificación de noticias con IA y genera boletines listos para distribuir.</p><div class="stack">Python · OpenRouter · FTP · CustomTkinter · PDF/RTF</div><span class="project-link">Ver código y resultado →</span></div>
             </a>
             <a class="project" href="https://github.com/alannietox" target="_blank" rel="noopener">
-                <span class="type">GitHub</span><h3>Más proyectos ↗</h3>
-                <p>Explora el resto de proyectos, experimentos y código disponible públicamente.</p>
-                <div class="stack">github.com/alannietox</div>
+                <div class="project-body"><span class="type">GitHub</span><h3>Más proyectos ↗</h3><p>Explora el resto de proyectos, experimentos y código disponible públicamente.</p><div class="stack">github.com/alannietox</div><span class="project-link">Explorar repositorios →</span></div>
             </a>
         </div>
     </section>
